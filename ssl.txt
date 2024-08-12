@@ -1,0 +1,692 @@
+1. Login server itsusraappsp08 with appsrv
+
+     Password :: APP EmEA::z$3Ftcbs 
+                          -Vp26$0.4_ 
+			
+2./opt/appsrv/nas/keystore==========SSL key store path to check the JKS file
+ EX::weblogic_keystore_itsusmpl00032.jnj.com.jks
+ 
+3.We need to take the back up for Existing JKS file and rename that file
+
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> cp -rp weblogic_keystore_itsusmpl00032.jnj.com.jks weblogic_keystore_itsusmpl00032.jnj.com.jks_11Feb2018
+
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> mv weblogic_keystore_itsusmpl00032.jnj.com.jks weblogic_keystore_itsusmpl00032.jnj.com.jks_backup
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> ls -lrt *itsusmpl00032*
+-rw-r--r-- 1 appsrv appsrv  1278 2013-02-05 10:23 itsusmpl00032.cer
+-rw-r--r-- 1 appsrv appsrv  1015 2013-02-05 15:12 itsusmpl00032.jnj.com.pem
+-rwxr-xr-x 1 appsrv appsrv 23365 2013-02-07 14:42 weblogic_keystore_itsusmpl00032.jnj.com.jks-backup
+-rw-r--r-- 1 appsrv appsrv  1011 2013-02-07 15:13 itsusmpl00032.jnj.com.certreq
+-rw-r--r-- 1 appsrv appsrv  1278 2013-02-07 15:14 2C00000008C78A-itsusmpl00032.cer
+-rwxr-xr-x 1 appsrv appsrv 13913 2013-02-07 15:19 weblogic_keystore_itsusmpl00032.jnj.com.jks-backup-20130207-151947
+-rwxr-xr-x 1 appsrv appsrv 13913 2013-02-07 15:25 weblogic_keystore_itsusmpl00032.jnj.com.jks-backup-20130207-152505
+-rwxr-xr-x 1 appsrv appsrv 16968 2015-02-20 11:11 weblogic_keystore_itsusmpl00032.jnj.com.jks_20Feb2015
+-rwxr-xr-x 1 appsrv appsrv 11728 2015-02-20 11:18 weblogic_keystore_itsusmpl00032.jnj.com.jks_20FEB2015
+-rw-r--r-- 1 appsrv appsrv  1079 2015-02-20 11:24 itsusmpl00032_jnj_com.pem
+-rw-r--r-- 1 appsrv appsrv  2146 2015-02-23 03:47 itsusmpl00032_jnj_com_cert.cer
+-rw-r--r-- 1 appsrv appsrv  5631 2015-02-23 03:47 itsusmpl00032_jnj_com_interm.cer
+-rw-r--r-- 1 appsrv appsrv  1521 2015-02-23 05:01 itsusmpl00032_jnj_com_inter.cer
+-rw-r--r-- 1 appsrv appsrv  1952 2015-02-23 05:02 itsusmpl00032_jnj_com_inter1.cer
+-rw-r--r-- 1 appsrv appsrv  2159 2015-02-23 05:03 itsusmpl00032_jnj_com_root.cer
+-rwxr-xr-x 1 appsrv appsrv 22804 2015-02-23 05:10 weblogic_keystore_itsusmpl00032.jnj.com.jks_backup
+-rwxr-xr-x 1 appsrv appsrv 22804 2015-02-23 05:10 weblogic_keystore_itsusmpl00032.jnj.com.jks_11Feb2018
+
+
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> /opt/appsrv/jdk64/jdk1.7.0_13/bin/keytool -list -keystore weblogic_keystore_itsusmpl00032.jnj.com.jks_11Feb2018 -storepass 52R4Udibkeystorepassword_weblogic
+
+Keystore type: JKS
+Keystore provider: SUN
+
+Your keystore contains 10 entries
+
+jnjinternalonlinecertificateauthority, Feb 7, 2013, trustedCertEntry,
+Certificate fingerprint (SHA1): C8:20:C7:97:6E:A1:EA:33:7B:E2:C9:17:75:94:E2:85:CD:CF:96:1B
+polca, Feb 7, 2013, trustedCertEntry,
+Certificate fingerprint (SHA1): 84:9A:F9:9F:81:75:2D:36:BD:6A:F5:A5:A7:30:D8:0B:F2:75:7D:4A
+rootca2048bit, Feb 7, 2013, trustedCertEntry,
+Certificate fingerprint (SHA1): 28:89:01:B1:AE:A4:A9:EB:2E:8E:07:67:9E:01:DF:80:C6:C5:E2:57
+polca2048bit, Feb 7, 2013, trustedCertEntry,
+Certificate fingerprint (SHA1): EB:8A:4E:EF:06:57:8E:9A:F8:04:A4:7C:03:CD:9E:39:89:80:7B:C6
+itsusmpl00032.jnj.com, Feb 23, 2015, PrivateKeyEntry,
+Certificate fingerprint (SHA1): E0:82:35:00:49:BA:9A:E1:57:4D:0D:D5:87:97:90:EE:12:13:56:F1
+inter, Feb 23, 2015, trustedCertEntry,
+Certificate fingerprint (SHA1): 02:FA:F3:E2:91:43:54:68:60:78:57:69:4D:F5:E4:5B:68:85:18:68
+jnjinternalonlinecertificationauthoritya, Feb 7, 2013, trustedCertEntry,
+Certificate fingerprint (SHA1): 5D:04:EA:5F:54:D4:17:89:AE:C7:4F:53:4B:5F:58:D1:6B:75:14:66
+inter1, Feb 23, 2015, trustedCertEntry,
+Certificate fingerprint (SHA1): F5:AD:0B:CC:1A:D5:6C:D1:50:72:5B:1C:86:6C:30:AD:92:EF:21:B0
+itsusmpl00033.jnj.com, Feb 7, 2013, PrivateKeyEntry,
+Certificate fingerprint (SHA1): DD:DB:D4:D0:08:3D:3B:17:09:66:30:F2:C9:9F:5C:6E:8E:7F:18:3E
+root, Feb 23, 2015, trustedCertEntry,
+Certificate fingerprint (SHA1): 10:4C:63:D2:54:6B:80:21:DD:10:5E:9F:BA:5A:8D:78:16:9F:6B:32
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore>
+
+
+4.Check the how many domains are present and also check the JDK Version.If the JDK Version is same for all domains proceed for further steps
+
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> cd /home/appsrv/bin
+appsrv@itsusmpl00032:~/bin> ./wlproc
+Sorting Output by Domain
+STATUS PROCESS        PID   USER     DOMAIN     WL_HOME            JTYPE    JVER       MIN_MEM  MAX_MEM  START_DATE
+------ -------        ---   ----     ------     -------            -----    ----       -------  -------  ----------
+[UP]   Logserver-adm  25456 appsrv   Logserver  weblogic12         SUN      1.7.0_13   32m      256m     2017
+[UP]   nswl040-m09    24150 nswl040  nswl040    weblogic12         SUN      1.7.0_13   384m     384m     2017
+[UP]   nswl040-m07    26086 nswl040  nswl040    weblogic12         SUN      1.7.0_13   512m     1024m    2017
+[UP]   nswl040-m11    24344 nswl040  nswl040    weblogic12         SUN      1.7.0_13   512m     1024m    2017
+[UP]   nswl040-m05    28412 nswl040  nswl040    weblogic12         SUN      1.7.0_13   512m     512m     2017
+[UP]   nswl041-m03    24612 nswl041  nswl041    weblogic12         SUN      1.7.0_13   1024m    1024m    2017
+[UP]   nswl041-m05    24709 nswl041  nswl041    weblogic12         SUN      1.7.0_13   256m     256m     2017
+[UP]   nswl041-m01    24827 nswl041  nswl041    weblogic12         SUN      1.7.0_13   512m     1024m    2017
+[UP]   nswl042-m03    9316  nswl042  nswl042    weblogic1032       SUN      1.7.0_13   1024m    1024m    Jan14
+[UP]   nswl042-m01    9056  nswl042  nswl042    weblogic1032       SUN      1.7.0_13   256m     256m     2017
+[UP]   nswl045-m01    25941 nswl045  nswl045    weblogic1032       SUN      1.7.0_13   1024m    1024m    2017
+[UP]   nswl047-m01    30399 nswl047  nswl047    weblogic1032       SUN      1.7.0_13   1024m    1024m    2017
+[UP]   AdminServer    30278 nswl047  nswl047    weblogic1032       SUN      1.7.0_13   256m     256m     2017
+
+Total active WebLogic instances = 13 , Total allocated Heap = 9088 MB
+Current Physical Memory: Total Mem: 20004  Used Mem: 11514  Free Mem: 8490 - Unit(mb)
+
+
+5. Creating for JKS file.
+
+/opt/appsrv/jdk64/jdk1.7.0_13/bin/keytool -genkey -alias itsusmpl00032.jnj.com -keyalg RSA -keysize 2048 -validity 3650 -keystore weblogic_keystore_itsusmpl00032.jnj.com.jks -storetype jks -keypass 52R4Udibprivatekeypassword_weblogic -storepass 52R4Udibkeystorepassword_weblogic -dname "CN=itsusmpl00032.jnj.com, OU=JNJ, O=ITS, L=Beerse/New jersey, S=State, C=BE/NA"
+
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> ls -lrt *itsusmpl00032*
+-rw-r--r-- 1 appsrv appsrv  1278 2013-02-05 10:23 itsusmpl00032.cer
+-rw-r--r-- 1 appsrv appsrv  1015 2013-02-05 15:12 itsusmpl00032.jnj.com.pem
+-rwxr-xr-x 1 appsrv appsrv 23365 2013-02-07 14:42 weblogic_keystore_itsusmpl00032.jnj.com.jks-backup
+-rw-r--r-- 1 appsrv appsrv  1011 2013-02-07 15:13 itsusmpl00032.jnj.com.certreq
+-rw-r--r-- 1 appsrv appsrv  1278 2013-02-07 15:14 2C00000008C78A-itsusmpl00032.cer
+-rwxr-xr-x 1 appsrv appsrv 13913 2013-02-07 15:19 weblogic_keystore_itsusmpl00032.jnj.com.jks-backup-20130207-151947
+-rwxr-xr-x 1 appsrv appsrv 13913 2013-02-07 15:25 weblogic_keystore_itsusmpl00032.jnj.com.jks-backup-20130207-152505
+-rwxr-xr-x 1 appsrv appsrv 16968 2015-02-20 11:11 weblogic_keystore_itsusmpl00032.jnj.com.jks_20Feb2015
+-rwxr-xr-x 1 appsrv appsrv 11728 2015-02-20 11:18 weblogic_keystore_itsusmpl00032.jnj.com.jks_20FEB2015
+-rw-r--r-- 1 appsrv appsrv  1079 2015-02-20 11:24 itsusmpl00032_jnj_com.pem
+-rw-r--r-- 1 appsrv appsrv  2146 2015-02-23 03:47 itsusmpl00032_jnj_com_cert.cer
+-rw-r--r-- 1 appsrv appsrv  5631 2015-02-23 03:47 itsusmpl00032_jnj_com_interm.cer
+-rw-r--r-- 1 appsrv appsrv  1521 2015-02-23 05:01 itsusmpl00032_jnj_com_inter.cer
+-rw-r--r-- 1 appsrv appsrv  1952 2015-02-23 05:02 itsusmpl00032_jnj_com_inter1.cer
+-rw-r--r-- 1 appsrv appsrv  2159 2015-02-23 05:03 itsusmpl00032_jnj_com_root.cer
+-rwxr-xr-x 1 appsrv appsrv 22804 2015-02-23 05:10 weblogic_keystore_itsusmpl00032.jnj.com.jks_backup
+-rwxr-xr-x 1 appsrv appsrv 22804 2015-02-23 05:10 weblogic_keystore_itsusmpl00032.jnj.com.jks_11Feb2018
+-rw-r--r-- 1 appsrv appsrv  2281 2018-02-11 04:43 weblogic_keystore_itsusmpl00032.jnj.com.jks
+
+
+6.Creating PEM file
+
+/opt/appsrv/jdk64/jdk1.7.0_13/bin/keytool -certreq -alias itsusmpl00032.jnj.com -file itsusmpl00032.jnj.com.pem -keystore weblogic_keystore_itsusmpl00032.jnj.com.jks -storetype jks -keypass 52R4Udibprivatekeypassword_weblogic -storepass 52R4Udibkeystorepassword_weblogic
+
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> ls -lrt *itsusmpl00032*
+-rw-r--r-- 1 appsrv appsrv  1278 2013-02-05 10:23 itsusmpl00032.cer
+-rwxr-xr-x 1 appsrv appsrv 23365 2013-02-07 14:42 weblogic_keystore_itsusmpl00032.jnj.com.jks-backup
+-rw-r--r-- 1 appsrv appsrv  1011 2013-02-07 15:13 itsusmpl00032.jnj.com.certreq
+-rw-r--r-- 1 appsrv appsrv  1278 2013-02-07 15:14 2C00000008C78A-itsusmpl00032.cer
+-rwxr-xr-x 1 appsrv appsrv 13913 2013-02-07 15:19 weblogic_keystore_itsusmpl00032.jnj.com.jks-backup-20130207-151947
+-rwxr-xr-x 1 appsrv appsrv 13913 2013-02-07 15:25 weblogic_keystore_itsusmpl00032.jnj.com.jks-backup-20130207-152505
+-rwxr-xr-x 1 appsrv appsrv 16968 2015-02-20 11:11 weblogic_keystore_itsusmpl00032.jnj.com.jks_20Feb2015
+-rwxr-xr-x 1 appsrv appsrv 11728 2015-02-20 11:18 weblogic_keystore_itsusmpl00032.jnj.com.jks_20FEB2015
+-rw-r--r-- 1 appsrv appsrv  1079 2015-02-20 11:24 itsusmpl00032_jnj_com.pem
+-rw-r--r-- 1 appsrv appsrv  2146 2015-02-23 03:47 itsusmpl00032_jnj_com_cert.cer
+-rw-r--r-- 1 appsrv appsrv  5631 2015-02-23 03:47 itsusmpl00032_jnj_com_interm.cer
+-rw-r--r-- 1 appsrv appsrv  1521 2015-02-23 05:01 itsusmpl00032_jnj_com_inter.cer
+-rw-r--r-- 1 appsrv appsrv  1952 2015-02-23 05:02 itsusmpl00032_jnj_com_inter1.cer
+-rw-r--r-- 1 appsrv appsrv  2159 2015-02-23 05:03 itsusmpl00032_jnj_com_root.cer
+-rwxr-xr-x 1 appsrv appsrv 22804 2015-02-23 05:10 weblogic_keystore_itsusmpl00032.jnj.com.jks_backup
+-rwxr-xr-x 1 appsrv appsrv 22804 2015-02-23 05:10 weblogic_keystore_itsusmpl00032.jnj.com.jks_11Feb2018
+-rw-r--r-- 1 appsrv appsrv  2281 2018-02-11 04:43 weblogic_keystore_itsusmpl00032.jnj.com.jks
+-rw-r--r-- 1 appsrv appsrv  1096 2018-02-11 04:49 itsusmpl00032.jnj.com.pem
+
+
+7.The files Root,Inter,Interm,Cert already present in the directory.Kindly remane that files.
+
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> mv itsusmpl00032_jnj_com_cert.cer itsusmpl00032_jnj_com_cert.cer_114feb 2018
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> mv itsusmpl00032_jnj_com_cert.cer itsusmpl00032_jnj_com_cert.cer_11feb2018
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> mv itsusmpl00032_jnj_com_interm.cer itsusmpl00032_jnj_com_interm.cer_11Feb2018
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> mv itsusmpl00032_jnj_com_inter1.cer itsusmpl00032_jnj_com_inter1.cer_11Feb2018
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> mv itsusmpl00032_jnj_com_root.cer itsusmpl00032_jnj_com_root.cer_11Feb2018
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> mv itsusmpl00032_jnj_com_inter.cer itsusmpl00032_jnj_com_inter.cer_11Feb2018
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> ls -lrt *itsusmpl00032*
+-rw-r--r-- 1 appsrv appsrv  1278 2013-02-05 10:23 itsusmpl00032.cer
+-rwxr-xr-x 1 appsrv appsrv 23365 2013-02-07 14:42 weblogic_keystore_itsusmpl00032.jnj.com.jks-backup
+-rw-r--r-- 1 appsrv appsrv  1011 2013-02-07 15:13 itsusmpl00032.jnj.com.certreq
+-rw-r--r-- 1 appsrv appsrv  1278 2013-02-07 15:14 2C00000008C78A-itsusmpl00032.cer
+-rwxr-xr-x 1 appsrv appsrv 13913 2013-02-07 15:19 weblogic_keystore_itsusmpl00032.jnj.com.jks-backup-20130207-151947
+-rwxr-xr-x 1 appsrv appsrv 13913 2013-02-07 15:25 weblogic_keystore_itsusmpl00032.jnj.com.jks-backup-20130207-152505
+-rwxr-xr-x 1 appsrv appsrv 16968 2015-02-20 11:11 weblogic_keystore_itsusmpl00032.jnj.com.jks_20Feb2015
+-rwxr-xr-x 1 appsrv appsrv 11728 2015-02-20 11:18 weblogic_keystore_itsusmpl00032.jnj.com.jks_20FEB2015
+-rw-r--r-- 1 appsrv appsrv  1079 2015-02-20 11:24 itsusmpl00032_jnj_com.pem
+-rw-r--r-- 1 appsrv appsrv  2146 2015-02-23 03:47 itsusmpl00032_jnj_com_cert.cer_11feb2018
+-rw-r--r-- 1 appsrv appsrv  5631 2015-02-23 03:47 itsusmpl00032_jnj_com_interm.cer_11Feb2018
+-rw-r--r-- 1 appsrv appsrv  1521 2015-02-23 05:01 itsusmpl00032_jnj_com_inter.cer_11Feb2018
+-rw-r--r-- 1 appsrv appsrv  1952 2015-02-23 05:02 itsusmpl00032_jnj_com_inter1.cer_11Feb2018
+-rw-r--r-- 1 appsrv appsrv  2159 2015-02-23 05:03 itsusmpl00032_jnj_com_root.cer_11Feb2018
+-rwxr-xr-x 1 appsrv appsrv 22804 2015-02-23 05:10 weblogic_keystore_itsusmpl00032.jnj.com.jks_backup
+-rwxr-xr-x 1 appsrv appsrv 22804 2015-02-23 05:10 weblogic_keystore_itsusmpl00032.jnj.com.jks_11Feb2018
+-rw-r--r-- 1 appsrv appsrv  2281 2018-02-11 04:43 weblogic_keystore_itsusmpl00032.jnj.com.jks
+-rw-r--r-- 1 appsrv appsrv  1096 2018-02-11 04:56 itsusmpl00032.jnj.com.pem
+
+
+8.Order certificates in commodo
+
+
+Order SSL: https://hard.cert-manager.com/customer/jnj
+      
+User ID :: weblogicadm 
+Password::WLogic@12 
+
+Here ordering certificate in step 2 you need to upload content of PEM file
+
+vi :: itsusmpl00032.jnj.com.pem
+
+-----BEGIN NEW CERTIFICATE REQUEST-----
+MIIC7TCCAdUCAQAweDEOMAwGA1UEBhMFQkUvTkExDjAMBgNVBAgTBVN0YXRlMRowGAYDVQQHExFC
+ZWVyc2UvTmV3IGplcnNleTEMMAoGA1UEChMDSVRTMQwwCgYDVQQLEwNKTkoxHjAcBgNVBAMTFWl0
+c3VzbXBsMDAwMzIuam5qLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAIWstcXv
+6rdGHKlBHZyZhP61nnhEa2KXHyZXWGawTlVkIW3OsLEYceNACUvSLiytmJzRh9Flyugej63z/v5Q
+vk0oNP2fDAFXBq8j1eEwmJd6X+RGQiJNWwcMpnqtsJF6OUGQx70B7oz5W3PyLaDF91RSjkwF6+T5
+I2QLulrl7+PgT6vFnGX4FZNc1oUCK/OZn40wB+T8ws5B0mV2r2Fd46rLos4NnVcWyWp9A489JCXR
+khsfyklcX4y4vGPo7BcCTxs29VBD3qhoGeFaTeAJTLwzykeT7PWg+Mjj0YisoBFILycchnDCCcQR
+N+BlgKL7S1YEES8tD737PLBMthHh6NcCAwEAAaAwMC4GCSqGSIb3DQEJDjEhMB8wHQYDVR0OBBYE
+FCBJhjuShbbKIYtgYMZpgi50fMvGMA0GCSqGSIb3DQEBCwUAA4IBAQAQfXql/PJp1E74c+H6KpnQ
+wnvePXtmQlqaRuhyka0+Z3XagLBt7GSUOlfiv/Es7Ixetrjp+dFECC2H6i3UQfq7YiKH2bjxw7zh
+ZifpM1pKE/xwjZTaXpxp+qZY7K0sswRAgDpfGe2SGyaRFxWYMbR/9DWhz3LDBPl5GHhvwGVs8fWg
+DVygJdhhhcfR+Hit+VenR661Dvs9qFVWfN5yqGfQP457ZLikWtHxOTBgGnbegDAmoLEA3R9Lz1LN
+6kO9msSKuGtKe4j9gNA4Tvzz4lrA/PEP6tzh3DK8W9jVKqtN9zJN7XW3kLBB0PDa0nLE7HyMqbWo
+lAHunXBNXHWIIel1
+-----END NEW CERTIFICATE REQUEST-----
+
+9.Now you can create a Empty files
+
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> touch itsusmpl00032_jnj_com_inter.cer
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> touch itsusmpl00032_jnj_com_interm.cer
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> touch itsusmpl00032_jnj_com_root.cer
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> touch itsusmpl00032_jnj_com_cert.cer
+
+
+10.Once certificate is issued you will received automatic mail from Commodo
+
+Hello,
+
+You have successfully enrolled for a SSL certificate.
+
+You now need to complete the following steps:
+
+    * Click the following link to download your SSL certificate
+    Format(s) most suitable for your server software:
+       as X509, Base64 encoded: https://hard.cert-manager.com/customer/jnj/ssl?action=download&sslId=604281&format=x509
+
+    Other available formats:
+       as PKCS#7 Base64 encoded: https://hard.cert-manager.com/customer/jnj/ssl?action=download&sslId=604281&format=base64
+       as PKCS#7 Bin encoded: https://hard.cert-manager.com/customer/jnj/ssl?action=download&sslId=604281&format=bin
+       as X509 Certificate only, Base64 encoded: https://hard.cert-manager.com/customer/jnj/ssl?action=download&sslId=604281&format=x509CO
+       as X509 Intermediates/root only, Base64 encoded: https://hard.cert-manager.com/customer/jnj/ssl?action=download&sslId=604281&format=x509IO
+       as X509 Intermediates/root only Reverse, Base64 encoded: https://hard.cert-manager.com/customer/jnj/ssl?action=download&sslId=604281&format=x509IOR
+
+    * Import your new certificate into your server (Please contact your administrator for help with this).
+    * Your renew id: OQQoOYocTIkFmPq9rzcs
+
+IN 2nd paragragh use 4th link you can download inter,interm,root certificates
+
+-----BEGIN CERTIFICATE-----(Inter)
+MIIENjCCAx6gAwIBAgIBATANBgkqhkiG9w0BAQUFADBvMQswCQYDVQQGEwJTRTEU
+MBIGA1UEChMLQWRkVHJ1c3QgQUIxJjAkBgNVBAsTHUFkZFRydXN0IEV4dGVybmFs
+IFRUUCBOZXR3b3JrMSIwIAYDVQQDExlBZGRUcnVzdCBFeHRlcm5hbCBDQSBSb290
+MB4XDTAwMDUzMDEwNDgzOFoXDTIwMDUzMDEwNDgzOFowbzELMAkGA1UEBhMCU0Ux
+FDASBgNVBAoTC0FkZFRydXN0IEFCMSYwJAYDVQQLEx1BZGRUcnVzdCBFeHRlcm5h
+bCBUVFAgTmV0d29yazEiMCAGA1UEAxMZQWRkVHJ1c3QgRXh0ZXJuYWwgQ0EgUm9v
+dDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALf3GjPm8gAELTngTlvt
+H7xsD821+iO2zt6bETOXpClMfZOfvUq8k+0DGuOPz+VtUFrWlymUWoCwSXrbLpX9
+uMq/NzgtHj6RQa1wVsfwTz/oMp50ysiQVOnGXw94nZpAPA6sYapeFI+eh6FqUNzX
+mk6vBbOmcZSccbNQYArHE504B4YCqOmoaSYYkKtMsE8jqzpPhNjfzp/haW+710LX
+a0Tkx63ubUFfclpxCDezeWWkWaCUN/cALw3CknLa0Dhy2xSoRcRdKn23tNbE7qzN
+E0S3ySvdQwAl+mG5aWpYIxG3pzOPVnVZ9c0p10a3CitlttNCbxWyuHv77+ldU9U0
+WicCAwEAAaOB3DCB2TAdBgNVHQ4EFgQUrb2YejS0Jvf6xCZU7wO94CTLVBowCwYD
+VR0PBAQDAgEGMA8GA1UdEwEB/wQFMAMBAf8wgZkGA1UdIwSBkTCBjoAUrb2YejS0
+Jvf6xCZU7wO94CTLVBqhc6RxMG8xCzAJBgNVBAYTAlNFMRQwEgYDVQQKEwtBZGRU
+cnVzdCBBQjEmMCQGA1UECxMdQWRkVHJ1c3QgRXh0ZXJuYWwgVFRQIE5ldHdvcmsx
+IjAgBgNVBAMTGUFkZFRydXN0IEV4dGVybmFsIENBIFJvb3SCAQEwDQYJKoZIhvcN
+AQEFBQADggEBALCb4IUlwtYj4g+WBpKdQZic2YR5gdkeWxQHIzZlj7DYd7usQWxH
+YINRsPkyPef89iYTx4AWpb9a/IfPeHmJIZriTAcKhjW88t5RxNKWt9x+Tu5w/Rw5
+6wwCURQtjr0W4MHfRnXnJK3s9EK0hZNwEGe6nQY1ShjTK3rMUUKhemPR5ruhxSvC
+Nr4TDea9Y355e6cJDUCrat2PisP29owaQgVR1EX1n6diIWgVIEM8med8vSTYqZEX
+c4g/VhsxOBi0cQ+azcgOno4uG+GMmIPLHzHxREzGBHNJdmAPx/i9F4BrLunMTA5a
+mnkPIAou1Z5jJh5VkpTYghdae9C8x49OhgQ=
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----(Interm)
+MIIFdDCCBFygAwIBAgIQJ2buVutJ846r13Ci/ITeIjANBgkqhkiG9w0BAQwFADBv
+MQswCQYDVQQGEwJTRTEUMBIGA1UEChMLQWRkVHJ1c3QgQUIxJjAkBgNVBAsTHUFk
+ZFRydXN0IEV4dGVybmFsIFRUUCBOZXR3b3JrMSIwIAYDVQQDExlBZGRUcnVzdCBF
+eHRlcm5hbCBDQSBSb290MB4XDTAwMDUzMDEwNDgzOFoXDTIwMDUzMDEwNDgzOFow
+gYUxCzAJBgNVBAYTAkdCMRswGQYDVQQIExJHcmVhdGVyIE1hbmNoZXN0ZXIxEDAO
+BgNVBAcTB1NhbGZvcmQxGjAYBgNVBAoTEUNPTU9ETyBDQSBMaW1pdGVkMSswKQYD
+VQQDEyJDT01PRE8gUlNBIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MIICIjANBgkq
+hkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAkehUktIKVrGsDSTdxc9EZ3SZKzejfSNw
+AHG8U9/E+ioSj0t/EFa9n3Byt2F/yUsPF6c947AEYe7/EZfH9IY+Cvo+XPmT5jR6
+2RRr55yzhaCCenavcZDX7P0N+pxs+t+wgvQUfvm+xKYvT3+Zf7X8Z0NyvQwA1onr
+ayzT7Y+YHBSrfuXjbvzYqOSSJNpDa2K4Vf3qwbxstovzDo2a5JtsaZn4eEgwRdWt
+4Q08RWD8MpZRJ7xnw8outmvqRsfHIKCxH2XeSAi6pE6p8oNGN4Tr6MyBSENnTnIq
+m1y9TBsoilwie7SrmNnu4FGDwwlGTm0+mfqVF9p8M1dBPI1R7Qu2XK8sYxrfV8g/
+vOldxJuvRZnio1oktLqpVj3Pb6r/SVi+8Kj/9Lit6Tf7urj0Czr56ENCHonYhMsT
+8dm74YlguIwoVqwUHZwK53Hrzw7dPamWoUi9PPevtQ0iTMARgexWO/bTouJbt7IE
+IlKVgJNp6I5MZfGRAy1wdALqi2cVKWlSArvX31BqVUa/oKMoYX9w0MOiqiwhqkfO
+KJwGRXa/ghgntNWutMtQ5mv0TIZxMOmm3xaG4Nj/QN370EKIf6MzOi5cHkERgWPO
+GHFrK+ymircxXDpqR+DDeVnWIBqv8mqYqnK8V0rSS527EPywTEHl7R09XiidnMy/
+s1Hap0flhFMCAwEAAaOB9DCB8TAfBgNVHSMEGDAWgBStvZh6NLQm9/rEJlTvA73g
+JMtUGjAdBgNVHQ4EFgQUu69+Aj36pvE8hI6t7jiY7NkyMtQwDgYDVR0PAQH/BAQD
+AgGGMA8GA1UdEwEB/wQFMAMBAf8wEQYDVR0gBAowCDAGBgRVHSAAMEQGA1UdHwQ9
+MDswOaA3oDWGM2h0dHA6Ly9jcmwudXNlcnRydXN0LmNvbS9BZGRUcnVzdEV4dGVy
+bmFsQ0FSb290LmNybDA1BggrBgEFBQcBAQQpMCcwJQYIKwYBBQUHMAGGGWh0dHA6
+Ly9vY3NwLnVzZXJ0cnVzdC5jb20wDQYJKoZIhvcNAQEMBQADggEBAGS/g/FfmoXQ
+zbihKVcN6Fr30ek+8nYEbvFScLsePP9NDXRqzIGCJdPDoCpdTPW6i6FtxFQJdcfj
+Jw5dhHk3QBN39bSsHNA7qxcS1u80GH4r6XnTq1dFDK8o+tDb5VCViLvfhVdpfZLY
+Uspzgb8c8+a4bmYRBbMelC1/kZWSWfFMzqORcUx8Rww7Cxn2obFshj5cqsQugsv5
+B5a6SE2Q8pTIqXOi6wZ7I53eovNNVZ96YUWYGGjHXkBrI/V5eu+MtWuLt29G9Hvx
+PUsE2JOAWVrgQSQdso8VYFhH2+9uRv0V9dlfmrPb2LjkQLPNlzmuhbsdjrzch5vR
+pu/xO28QOG8=
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----(Root)
+MIIGDjCCA/agAwIBAgIQNoJef7WkgZN+9tFza7k8pjANBgkqhkiG9w0BAQwFADCB
+hTELMAkGA1UEBhMCR0IxGzAZBgNVBAgTEkdyZWF0ZXIgTWFuY2hlc3RlcjEQMA4G
+A1UEBxMHU2FsZm9yZDEaMBgGA1UEChMRQ09NT0RPIENBIExpbWl0ZWQxKzApBgNV
+BAMTIkNPTU9ETyBSU0EgQ2VydGlmaWNhdGlvbiBBdXRob3JpdHkwHhcNMTQwMjEy
+MDAwMDAwWhcNMjkwMjExMjM1OTU5WjCBljELMAkGA1UEBhMCR0IxGzAZBgNVBAgT
+EkdyZWF0ZXIgTWFuY2hlc3RlcjEQMA4GA1UEBxMHU2FsZm9yZDEaMBgGA1UEChMR
+Q09NT0RPIENBIExpbWl0ZWQxPDA6BgNVBAMTM0NPTU9ETyBSU0EgT3JnYW5pemF0
+aW9uIFZhbGlkYXRpb24gU2VjdXJlIFNlcnZlciBDQTCCASIwDQYJKoZIhvcNAQEB
+BQADggEPADCCAQoCggEBALkU2YXyQURX/zBEHtw8RKMXuG4B+KNfwqkhHc5Z9Ozz
+iKkJMjyxi2OkPic284/5OGYuB5dBj0um3cNfnnM858ogDU98MgXPwS5IZUqF0B9W
+MW2O5cYy1Bu8n32W/JjXT/j0WFb440W+kRiC5Iq+r81SN1GHTx6Xweg6rvn/RuRl
+Pz/DR4MvzLhCXi1+91porl1LwKY1IfWGo8hJi5hjYA3JIUjCkjBlRrKGNQRCJX6t
+p05LEkAAeohoXG+fo6R4ESGuPQsOvkUUI8/rddf2oPG8RWxevKEy7PNYeEIoCzoB
+dvDFoJ7BaXDej0umed/ydrbjDxN8GDuxUWxqIDnOnmkCAwEAAaOCAWUwggFhMB8G
+A1UdIwQYMBaAFLuvfgI9+qbxPISOre44mOzZMjLUMB0GA1UdDgQWBBSa8yvaz61P
+ti+7KkhIKhK3G0LBJDAOBgNVHQ8BAf8EBAMCAYYwEgYDVR0TAQH/BAgwBgEB/wIB
+ADAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwGwYDVR0gBBQwEjAGBgRV
+HSAAMAgGBmeBDAECAjBMBgNVHR8ERTBDMEGgP6A9hjtodHRwOi8vY3JsLmNvbW9k
+b2NhLmNvbS9DT01PRE9SU0FDZXJ0aWZpY2F0aW9uQXV0aG9yaXR5LmNybDBxBggr
+BgEFBQcBAQRlMGMwOwYIKwYBBQUHMAKGL2h0dHA6Ly9jcnQuY29tb2RvY2EuY29t
+L0NPTU9ET1JTQUFkZFRydXN0Q0EuY3J0MCQGCCsGAQUFBzABhhhodHRwOi8vb2Nz
+cC5jb21vZG9jYS5jb20wDQYJKoZIhvcNAQEMBQADggIBAGmKNmiaHjtlC+B8z6ar
+cTuvYaQ/5GQBSRDTHY/i1e1n055bl71CHgf50Ltt9zKVWiIpYvgMnFlWJzagIhIR
++kf0UclZeylKpUg1fMWXZuAnJTsVejJ1SpH7pmue4lP6DYwT+yO4CxIsru3bHUeQ
+1dCTaXaROBU01xjqfrxrWN4qOZADRARKVtho5fV8aX6efVRL0NiGq2dmE1deiSoX
+rS2uvUAOZu2K/1S0wQHLqeBHuhFhj62uI0gqxiV5iRxBBJXAEepXK9a0l/qx6RVi
+7Epxd/3zoZza9msAKcUy5/pO6rMqpxiXHFinQjZf7BTP+HsO993MiBWamlzI8SDH
+0YZyoRebrrr+bKgy0QB2SXP3PyeHPLbJLfqqkJDJCgmfyWkfBxmpv966+AuIgkQW
+EH8HwIAiX3+8MN66zQd5ZFbY//NPnDC7bh5RS+bNvRfExb/IP46xH4pGtwZDb2It
+z1GdRcqK6ROLwMeRvlu2+jdKif7wndoTJiIsBpA+ixOYoBnW3dpKSH89D4mdJHJL
+DntE/9Q2toN2I1iLFGy4XfdhbTl27d0SPWuHiJeRvsBGAh52HN22r1xP9QDWnE2p
+4J6ijvyxFnlcIdNFgZoMOWxtKNcl0rcRkND23m9e9Pqki2Z3ci+bkEAsUhJg+f+1
+cC6JmnkJiYEt7Fx4b4GH8fxV
+-----END CERTIFICATE-----
+
+IN 2nd paragragh use 5rd link you can download cert certificates
+
+
+-----BEGIN CERTIFICATE-----(Cert)
+MIIF4jCCBMqgAwIBAgIQAvlgFR4YRf4zIBUgBf8wqTANBgkqhkiG9w0BAQsFADCB
+ljELMAkGA1UEBhMCR0IxGzAZBgNVBAgTEkdyZWF0ZXIgTWFuY2hlc3RlcjEQMA4G
+A1UEBxMHU2FsZm9yZDEaMBgGA1UEChMRQ09NT0RPIENBIExpbWl0ZWQxPDA6BgNV
+BAMTM0NPTU9ETyBSU0EgT3JnYW5pemF0aW9uIFZhbGlkYXRpb24gU2VjdXJlIFNl
+cnZlciBDQTAeFw0xODAyMTEwMDAwMDBaFw0yMTAyMTAyMzU5NTlaMIHEMQswCQYD
+VQQGEwJVUzEOMAwGA1UEERMFMDg4NjkxEzARBgNVBAgTCk5ldyBKZXJzZXkxEDAO
+BgNVBAcTB1Jhcml0YW4xGjAYBgNVBAkTETEwMDMgVVMgUnRlIDIwMiBOMRwwGgYD
+VQQKExNKb2huc29uIGFuZCBKb2huc29uMREwDwYDVQQLEwhXZWJMb2dpYzERMA8G
+A1UECxMIRWxpdGVTU0wxHjAcBgNVBAMTFWl0c3VzbXBsMDAwMzIuam5qLmNvbTCC
+ASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAIWstcXv6rdGHKlBHZyZhP61
+nnhEa2KXHyZXWGawTlVkIW3OsLEYceNACUvSLiytmJzRh9Flyugej63z/v5Qvk0o
+NP2fDAFXBq8j1eEwmJd6X+RGQiJNWwcMpnqtsJF6OUGQx70B7oz5W3PyLaDF91RS
+jkwF6+T5I2QLulrl7+PgT6vFnGX4FZNc1oUCK/OZn40wB+T8ws5B0mV2r2Fd46rL
+os4NnVcWyWp9A489JCXRkhsfyklcX4y4vGPo7BcCTxs29VBD3qhoGeFaTeAJTLwz
+ykeT7PWg+Mjj0YisoBFILycchnDCCcQRN+BlgKL7S1YEES8tD737PLBMthHh6NcC
+AwEAAaOCAfowggH2MB8GA1UdIwQYMBaAFJrzK9rPrU+2L7sqSEgqErcbQsEkMB0G
+A1UdDgQWBBQgSYY7koW2yiGLYGDGaYIudHzLxjAOBgNVHQ8BAf8EBAMCBaAwDAYD
+VR0TAQH/BAIwADAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwUAYDVR0g
+BEkwRzA7BgwrBgEEAbIxAQIBAwQwKzApBggrBgEFBQcCARYdaHR0cHM6Ly9zZWN1
+cmUuY29tb2RvLmNvbS9DUFMwCAYGZ4EMAQICMFoGA1UdHwRTMFEwT6BNoEuGSWh0
+dHA6Ly9jcmwuY29tb2RvY2EuY29tL0NPTU9ET1JTQU9yZ2FuaXphdGlvblZhbGlk
+YXRpb25TZWN1cmVTZXJ2ZXJDQS5jcmwwgYsGCCsGAQUFBwEBBH8wfTBVBggrBgEF
+BQcwAoZJaHR0cDovL2NydC5jb21vZG9jYS5jb20vQ09NT0RPUlNBT3JnYW5pemF0
+aW9uVmFsaWRhdGlvblNlY3VyZVNlcnZlckNBLmNydDAkBggrBgEFBQcwAYYYaHR0
+cDovL29jc3AuY29tb2RvY2EuY29tMDsGA1UdEQQ0MDKCFWl0c3VzbXBsMDAwMzIu
+am5qLmNvbYIZd3d3Lml0c3VzbXBsMDAwMzIuam5qLmNvbTANBgkqhkiG9w0BAQsF
+AAOCAQEAmLvLAvPxQ1SRGf8GxARr3TfxQuXIsbVrpflqUNnQSA6fB8kG441fL1/C
+NuQ+d60A9xfYjkv9oC0kTWPC/aWQGJVZmycnjYtK77A0Oeba/Iv0Jl2vyGpceVjX
+8OVkCkxxnFH8lKDQA0EK0Dxa/jhuEc7pZa+KUaRfimguvqc1L83I/pWyhxd7+uiI
+PvDuhT42rdf2w+5TzHt04KbeeC4RVo0CO5CXqe7qog8Lhx5NW+CDYBgGExwB+uF9
+0UbtCDuYoRwFa4Ahk1VIe81iLNrMyYQcMZeDrcwDHTYJTosWHsUvqDgno1TPmJ+Y
+TuLKKpWYsqluf0mD7sACObNeOyq9AQ==
+-----END CERTIFICATE-----
+
+
+11. Place that content in empty files i.e(inter,interm,root,Cert)
+
+12.Import that certificae in Nas Key store for Root file
+
+
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> /opt/appsrv/jdk64/jdk1.7.0_13/bin/keytool -import -alias root -file itsusmpl00032_jnj_com_root.cer -keystore weblogic_keystore_itsusmpl00032.jnj.com.jks -keypass 52R4Udibprivatekeypassword_weblogic -storepass 52R4Udibkeystorepassword_weblogic
+
+Owner: CN=COMODO RSA Organization Validation Secure Server CA, O=COMODO CA Limited, L=Salford, ST=Greater Manchester, C=GB
+Issuer: CN=COMODO RSA Certification Authority, O=COMODO CA Limited, L=Salford, ST=Greater Manchester, C=GB
+Serial number: 36825e7fb5a481937ef6d1736bb93ca6
+Valid from: Tue Feb 11 19:00:00 EST 2014 until: Sun Feb 11 18:59:59 EST 2029
+Certificate fingerprints:
+         MD5:  91:29:73:32:12:D5:F5:65:18:64:D8:6B:7B:AE:0B:98
+         SHA1: 10:4C:63:D2:54:6B:80:21:DD:10:5E:9F:BA:5A:8D:78:16:9F:6B:32
+         SHA256: 11:10:06:37:8A:FB:E8:E9:9B:B0:2B:A8:73:90:CA:42:9F:CA:27:73:F7:4D:7F:7E:B5:74:4F:5D:DF:68:01:4B
+         Signature algorithm name: SHA384withRSA
+         Version: 3
+
+Extensions:
+
+#1: ObjectId: 1.3.6.1.5.5.7.1.1 Criticality=false
+AuthorityInfoAccess [
+  [
+   accessMethod: caIssuers
+   accessLocation: URIName: http://crt.comodoca.com/COMODORSAAddTrustCA.crt
+,
+   accessMethod: ocsp
+   accessLocation: URIName: http://ocsp.comodoca.com
+]
+]
+
+#2: ObjectId: 2.5.29.35 Criticality=false
+AuthorityKeyIdentifier [
+KeyIdentifier [
+0000: BB AF 7E 02 3D FA A6 F1   3C 84 8E AD EE 38 98 EC  ....=...<....8..
+0010: D9 32 32 D4                                        .22.
+]
+]
+
+#3: ObjectId: 2.5.29.19 Criticality=true
+BasicConstraints:[
+  CA:true
+  PathLen:0
+]
+
+#4: ObjectId: 2.5.29.31 Criticality=false
+CRLDistributionPoints [
+  [DistributionPoint:
+     [URIName: http://crl.comodoca.com/COMODORSACertificationAuthority.crl]
+]]
+
+#5: ObjectId: 2.5.29.32 Criticality=false
+CertificatePolicies [
+  [CertificatePolicyId: [2.5.29.32.0]
+[]  ]
+  [CertificatePolicyId: [2.23.140.1.2.2]
+[]  ]
+]
+
+#6: ObjectId: 2.5.29.37 Criticality=false
+ExtendedKeyUsages [
+  serverAuth
+  clientAuth
+]
+
+#7: ObjectId: 2.5.29.15 Criticality=true
+KeyUsage [
+  DigitalSignature
+  Key_CertSign
+  Crl_Sign
+]
+
+#8: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: 9A F3 2B DA CF AD 4F B6   2F BB 2A 48 48 2A 12 B7  ..+...O./.*HH*..
+0010: 1B 42 C1 24                                        .B.$
+]
+]
+
+Trust this certificate? [no]:  yes
+Certificate was added to keystore
+
+12.Import that certificae in Nas Key store for inter file
+
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> /opt/appsrv/jdk64/jdk1.7.0_13/bin/keytool -import -alias inter -file itsusmpl00032_jnj_com_inter.cer -keystore weblogic_keystore_itsusmpl00032.jnj.com.jks -keypass 52R4Udibprivatekeypassword_weblogic -storepass 52R4Udibkeystorepassword_weblogic
+Owner: CN=AddTrust External CA Root, OU=AddTrust External TTP Network, O=AddTrust AB, C=SE
+Issuer: CN=AddTrust External CA Root, OU=AddTrust External TTP Network, O=AddTrust AB, C=SE
+Serial number: 1
+Valid from: Tue May 30 06:48:38 EDT 2000 until: Sat May 30 06:48:38 EDT 2020
+Certificate fingerprints:
+         MD5:  1D:35:54:04:85:78:B0:3F:42:42:4D:BF:20:73:0A:3F
+         SHA1: 02:FA:F3:E2:91:43:54:68:60:78:57:69:4D:F5:E4:5B:68:85:18:68
+         SHA256: 68:7F:A4:51:38:22:78:FF:F0:C8:B1:1F:8D:43:D5:76:67:1C:6E:B2:BC:EA:B4:13:FB:83:D9:65:D0:6D:2F:F2
+         Signature algorithm name: SHA1withRSA
+         Version: 3
+
+Extensions:
+
+#1: ObjectId: 2.5.29.35 Criticality=false
+AuthorityKeyIdentifier [
+KeyIdentifier [
+0000: AD BD 98 7A 34 B4 26 F7   FA C4 26 54 EF 03 BD E0  ...z4.&...&T....
+0010: 24 CB 54 1A                                        $.T.
+]
+[CN=AddTrust External CA Root, OU=AddTrust External TTP Network, O=AddTrust AB, C=SE]
+SerialNumber: [    01]
+]
+
+#2: ObjectId: 2.5.29.19 Criticality=true
+BasicConstraints:[
+  CA:true
+  PathLen:2147483647
+]
+
+#3: ObjectId: 2.5.29.15 Criticality=false
+KeyUsage [
+  Key_CertSign
+  Crl_Sign
+]
+
+#4: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: AD BD 98 7A 34 B4 26 F7   FA C4 26 54 EF 03 BD E0  ...z4.&...&T....
+0010: 24 CB 54 1A                                        $.T.
+]
+]
+
+Trust this certificate? [no]:  yes
+Certificate was added to keystore
+
+14.Import that certificae in Nas Key store for Interm file.
+
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> /opt/appsrv/jdk64/jdk1.7.0_13/bin/keytool -import -alias interm -file itsusmpl00032_jnj_com_interm.cer -keystore weblogic_keystore_itsusmpl00032.jnj.com.jks -keypass 52R4Udibprivatekeypassword_weblogic -storepass 52R4Udibkeystorepassword_weblogic
+
+Certificate was added to keystore
+
+15.Import that certificae in Nas Key store for Interm file.
+
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> /opt/appsrv/jdk64/jdk1.7.0_13/bin/keytool -import -alias itsusmpl00032.jnj.com -file itsusmpl00032_jnj_com_cert.cer -keystore weblogic_keystore_itsusmpl00032.jnj.com.jks -keypass 52R4Udibprivatekeypassword_weblogic -storepass 52R4Udibkeystorepassword_weblogic
+
+Certificate reply was installed in keystore
+
+
+16.Import the jnjinternalonlinecertificateauthority  key store
+
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> /opt/appsrv/jdk64/jdk1.7.0_13/bin/keytool -import -alias jnjinternalonlinecertificateauthority -file jnjinternalonlinecertificateauthority -keystore weblogic_keystore_itsusmpl00032.jnj.com.jks -keypass 52R4Udibprivatekeypassword_weblogic -storepass 52R4Udibkeystorepassword_weblogic
+Owner: CN=JNJ Internal Root Certification Authority, DC=JNJ, DC=COM
+Issuer: CN=JNJ Internal Root Certification Authority, DC=JNJ, DC=COM
+Serial number: 5490766cf478bfbf432bb408364b6365
+Valid from: Tue Apr 26 13:53:45 EDT 2005 until: Sat Apr 26 14:01:39 EDT 2025
+Certificate fingerprints:
+         MD5:  85:F6:D3:66:A0:65:AF:60:1C:7C:2B:6E:1A:51:62:FE
+         SHA1: C8:20:C7:97:6E:A1:EA:33:7B:E2:C9:17:75:94:E2:85:CD:CF:96:1B
+         SHA256: FC:9C:C8:D5:68:75:D1:14:EB:33:48:0E:83:A8:8C:7D:03:CD:22:4A:2D:58:9E:DF:46:E0:D6:99:88:ED:06:CF
+         Signature algorithm name: SHA1withRSA
+         Version: 3
+
+Extensions:
+
+#1: ObjectId: 1.3.6.1.4.1.311.21.1 Criticality=false
+0000: 02 01 00                                           ...
+
+
+#2: ObjectId: 2.5.29.19 Criticality=true
+BasicConstraints:[
+  CA:true
+  PathLen:2147483647
+]
+
+#3: ObjectId: 2.5.29.15 Criticality=true
+KeyUsage [
+  Key_CertSign
+  Crl_Sign
+]
+
+#4: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: F5 49 8C BD 12 10 13 17   BB 1F 15 7B 75 0B B4 4B  .I..........u..K
+0010: 98 EE 8B A7                                        ....
+]
+]
+
+Trust this certificate? [no]:  yes
+Certificate was added to keystore
+
+
+17.Go for the link  https://itsusmpl00032.jnj.com:24008/login.action and check certificate will be renewal or not.
+
+18.Go to console for each domain and restart SSL for particular managed servers.
+  
+
+
+
+
+
+
+================================================================================================================================================================================
+
+
+
+
+
+
+
+/opt/appsrv/jdk64/jdk1.7.0_13/bin/keytool -genkey -alias itsusmpl00032.jnj.com -keyalg RSA -keysize 2048 -validity 3650 -keystore weblogic_keystore_itsusmpl00032.jnj.com.jks -storetype jks -keypass 52R4Udibprivatekeypassword_weblogic -storepass 52R4Udibkeystorepassword_weblogic -dname "CN=itsusmpl00032.jnj.com, OU=JNJ, O=ITS, L=Beerse/New jersey, S=State, C=BE/NA"
+
+
+
+/opt/appsrv/jdk64/jdk1.7.0_13/bin
+
+Creating JKS file
+
+/opt/appsrv/jdk64/jdk1.7.0_13/bin/keytool -genkey -alias itsusraappsp08.jnj.com -keyalg RSA -keysize 2048 -validity 3650 -keystore weblogic_keystore_itsusraappsp08.jnj.com.jks -storetype jks -keypass 52R4Udibprivatekeypassword_weblogic -storepass 52R4Udibkeystorepassword_weblogic -dname "CN=itsusraappsp08.jnj.com, OU=JNJ, O=ITS, L=Beerse/New jersey, S=State, C=BE/NA" 
+
+
+
+appsrv@itsusraappsp08:/opt/appsrv/nas/keystore> /opt/appsrv/jdk64/jdk1.7.0_13/bin/keytool -list -keystore weblogic_keystore_itsusraappsp08.jnj.com.jks_10Feb2018 -storepass 52R4Udibkeystorepassword_weblogic
+
+Keystore type: JKS
+Keystore provider: SUN
+
+Your keystore contains 10 entries
+
+jnjinternalonlinecertificateauthority, Feb 7, 2013, trustedCertEntry,
+Certificate fingerprint (SHA1): C8:20:C7:97:6E:A1:EA:33:7B:E2:C9:17:75:94:E2:85:CD:CF:96:1B
+polca, Feb 7, 2013, trustedCertEntry,
+Certificate fingerprint (SHA1): 84:9A:F9:9F:81:75:2D:36:BD:6A:F5:A5:A7:30:D8:0B:F2:75:7D:4A
+rootca2048bit, Feb 7, 2013, trustedCertEntry,
+Certificate fingerprint (SHA1): 28:89:01:B1:AE:A4:A9:EB:2E:8E:07:67:9E:01:DF:80:C6:C5:E2:57
+polca2048bit, Feb 7, 2013, trustedCertEntry,
+Certificate fingerprint (SHA1): EB:8A:4E:EF:06:57:8E:9A:F8:04:A4:7C:03:CD:9E:39:89:80:7B:C6
+inter, Feb 20, 2015, trustedCertEntry,
+Certificate fingerprint (SHA1): 02:FA:F3:E2:91:43:54:68:60:78:57:69:4D:F5:E4:5B:68:85:18:68
+jnjinternalonlinecertificationauthoritya, Feb 7, 2013, trustedCertEntry,
+Certificate fingerprint (SHA1): 5D:04:EA:5F:54:D4:17:89:AE:C7:4F:53:4B:5F:58:D1:6B:75:14:66
+itsusraappsp08.jnj.com, Feb 20, 2015, PrivateKeyEntry,
+Certificate fingerprint (SHA1): DA:13:AA:5D:B2:0E:3D:C1:94:2A:20:0A:FE:95:32:E7:13:19:85:41
+inter2, Feb 20, 2015, trustedCertEntry,
+Certificate fingerprint (SHA1): F5:AD:0B:CC:1A:D5:6C:D1:50:72:5B:1C:86:6C:30:AD:92:EF:21:B0
+itsusmpl00033.jnj.com, Feb 7, 2013, PrivateKeyEntry,
+Certificate fingerprint (SHA1): DD:DB:D4:D0:08:3D:3B:17:09:66:30:F2:C9:9F:5C:6E:8E:7F:18:3E
+root, Feb 20, 2015, trustedCertEntry,
+Certificate fingerprint (SHA1): 10:4C:63:D2:54:6B:80:21:DD:10:5E:9F:BA:5A:8D:78:16:9F:6B:32
+appsrv@itsusraappsp08:/opt/appsrv/nas/keystore> 
+ 
+
+
+
+
+
+
+
+
+
+
+
+pemp file
+
+
+/opt/appsrv/jdk64/jdk1.7.0_13/bin/keytool -certreq -alias itsusmpl00032.jnj.com -file itsusmpl00032.jnj.com.pem -keystore weblogic_keystore_itsusmpl00032.jnj.com.jks -storetype jks -keypass 52R4Udibprivatekeypassword_weblogic -storepass 52R4Udibkeystorepassword_weblogic 
+
+
+
+
+
+Pemp file background
+
+
+-----BEGIN NEW CERTIFICATE REQUEST-----
+MIIC7jCCAdYCAQAweTEOMAwGA1UEBhMFQkUvTkExDjAMBgNVBAgTBVN0YXRlMRowGAYDVQQHExFC
+ZWVyc2UvTmV3IGplcnNleTEMMAoGA1UEChMDSVRTMQwwCgYDVQQLEwNKTkoxHzAdBgNVBAMTFml0
+c3VzcmFhcHBzcDA4Lmpuai5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCAbBai
+6bFrdAeO2djfLY8R/hIItYx1OTc6JaAgw/bcJUhX56/5Lf8xSoVKn3HGWN4Ajq/l+gDqoyJM8Swx
+KB3T+6+iNKrs8A2aJRfAYerud4qzxm7TUKIRIK/DAEVk0eH2DWnC1HZNvDOupRtpYE6FENEDUL2W
+z+9qtBFRoNNnext9HPyDFIDYhY6ORZA7xZrrann1XLQrIThtnPM/psLI/jNL1OKPZoNHo5Pr+Ac7
+WGxfMw58gfVQ9jIrYMcjJdSjn2oPFZwZDrHPvhuIVuw2caWRgbTZJoZH7JN1W3E362iV4Dhz2c5Q
+aaxnU6GpxhSyaMi9kDhvEDn1tSd6v1YnAgMBAAGgMDAuBgkqhkiG9w0BCQ4xITAfMB0GA1UdDgQW
+BBRxXvkKPaVag4BiJsLDR8SoNZBtKTANBgkqhkiG9w0BAQsFAAOCAQEACz3KHORzBLkAWsL5flYW
+Mgn4z7yfpEQohPlWEf/XxRPPmX0kV0OUsul1KqJPFBoUsE48lEoBtwyYyJ5JtrqCGHrRqYRIk47k
+ClN/N6CmN1bwgK61EPtA92zNFjaWkbqJEVosZUzFdxC/9jD0/SxfsmI9QMjl+ygeEZPKSaDsJ4Dm
+fLgxp1klqivRdkbEsVi5icA59d3gh4NnJPsv4tvXHGc4VJHVyQ7L5NX2Mp6RQYArqmZIOGe1qCHB
+3aEpI2Pd/d8ILXTv7olheVIUUjhz4AkDymhmOF9Opzc1aH82PMT7QGBuCxG2fJfaXwStiaj5I4VW
+SnqE7mnV1X3jmJn/JA==
+-----END NEW CERTIFICATE REQUEST-----
+~
+
+
+
+
+
+Jnj---------Orga
+Weblogic
+
+
+
+
+
+
+
+
+
+=======================================
+
+root
+inter
+interm
+certificate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

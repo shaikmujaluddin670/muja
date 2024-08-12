@@ -1,0 +1,30 @@
+1) Tracking SSL Certificate Expiry on regular basis.
+ 
+oracleintegrationplatform.notifications.se@ingka.com -> OIP WEBOGIC NOTIFICATIONS -> Ansible Alerts
+ 
+OIP Certificate List - SOA Domain 
+OIP Certificate List - OSB Domain 
+OIP Certificate List - ODI Domain 
+OIP Certificate List - GTW Domain
+ 
+Java Store Location:
+/opt/oracle/jdk1.8.0_401/jre/lib/security
+File Name: cacerts
+ 
+Truststore Location:
+/oitp_soa/PTOWD2972/keystores/
+FileName: CustomTrust.jks
+ 
+ 
+2) Updating and getting (including Followup) certificates from respective Domian teams.
+ 
+Sending emails to Domain Teams based on certificate expiry notifications received to above common mail box
+
+
+===============================================================================================================
+
+LIST:
+appsrv@itsusmpl00032:/opt/appsrv/nas/keystore> /opt/appsrv/jdk64/jdk1.7.0_13/bin/keytool -list -keystore weblogic_keystore_itsusmpl00032.jnj.com.jks_11Feb2018 -storepass 52R4Udibkeystorepassword_weblogic
+
+
+/opt/appsrv/jdk64/jdk1.7.0_13/bin/keytool -list -v -keystore CustomTrust.jks >list.text -storepass XXXXstorepassword
